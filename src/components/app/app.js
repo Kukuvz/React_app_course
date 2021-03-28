@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import nextId from "react-id-generator";
 
 import AppHeader from '../app-header';
 import SearchPanel from '../search-panel';
@@ -18,22 +19,20 @@ const AppBlock = styled.div`
 //     background-color: grey;
 // `
 
-
-
 export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             data: [
-                {label: 'Going to learn React', important: true, id: 1},
-                {label: 'Thats is so good', important: false, id: 2},
-                {label: 'I need a break...', important: false, id: 3}
+                {label: 'Going to learn React', important: true, id: nextId()},
+                {label: 'Thats is so good', important: false, id: nextId()},
+                {label: 'I need a break...', important: false, id: nextId()}
             ]
         };
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
 
-        this.maxId = 4;
+        // this.maxId = 4;
     }
 
     deleteItem (id) {
@@ -55,7 +54,8 @@ export default class App extends Component {
         const newItem = {
             label: body,
             important: false,
-            id: this.maxId++
+            // id: this.maxId++
+            id: nextId()
         }
         this.setState(({data}) => {
             const newArr = [...data, newItem];
